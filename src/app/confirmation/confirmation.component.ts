@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {DemandeService} from "../demande.service";
+import { DemandeService } from '../demande.service';
 
 @Component({
   selector: 'app-confirmation',
@@ -22,10 +22,14 @@ export class ConfirmationComponent implements OnInit {
   }
 
   sendRequest() {
+    // Valider si 'additionalInfo' et 'comment' sont vides
+    const additionalInfoToSend = this.additionalInfo || 'Non renseigné';
+    const commentToSend = this.comment || 'Non renseigné';
+
     // Créez un objet pour les données de confirmation
     const confirmationData = {
-      additionalInfo: this.additionalInfo,
-      comment: this.comment,
+      additionalInfo: additionalInfoToSend,
+      comment: commentToSend,
       ...this.formData // Inclure les données du formulaire
     };
 
