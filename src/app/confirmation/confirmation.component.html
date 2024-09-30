@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h5 class="text-center mb-4">
+    MERCI POUR VOTRE DEMANDE <i class="fa fa-smile-o" aria-hidden="true" style="color:#ff9800;"></i> .<br>
+    NOS ÉQUIPES VONT VOUS CONTACTER AU PLUS VITE.
+  </h5>
+
+  <h6>Informations de votre demande :</h6>
+  <pre>{{ formData | json }}</pre> <!-- Affichez les données sous forme JSON pour plus de clarté -->
+
+  <form (ngSubmit)="sendRequest()" #myForm="ngForm">
+    <label for="informations">Informations complémentaires :</label>
+    <textarea id="informations" name="informations" class="form-control" rows="4" [(ngModel)]="additionalInfo"></textarea>
+
+    <label for="comment">Comment nous avez-vous connus ?</label>
+    <input type="text" id="comment" name="comment" class="form-control" [(ngModel)]="comment">
+
+    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+
+    <div class="button-container">
+      <button type="button" class="btn btn-secondary" (click)="goBack()"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Revenir en arrière</button>
+      <button type="submit" class="btn btn-warning"> <i class="fa fa-check btn-icon-prepend"></i> Envoyer ma demande</button>
+    </div>
+  </form>
+
+  <div class="text-center mt-4">
+    <a href="https://calendly.com/your-link" target="_blank" class="btn btn-warning">
+      <i class="fa fa-calendar" aria-hidden="true"></i>
+      Prenez un rendez-vous
+    </a>
+  </div>
+
+  <div id="confirmation" class="confirmation mt-4" *ngIf="confirmationVisible">
+    Merci pour votre demande. Nos équipes vont vous contacter au plus vite.
+    <br>
+    Vous pouvez également prendre rendez-vous directement en cliquant sur ce lien : <a href="https://calendly.com/votre-lien-calendly">Prendre rendez-vous</a>
+  </div>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
